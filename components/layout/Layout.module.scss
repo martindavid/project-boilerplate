@@ -1,0 +1,14 @@
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~bootstrap/scss/mixins';
+
+
+.mainContent {
+  margin-top: 40px;
+}
+
+@include media-breakpoint-only(xs) {
+  .mainContent {
+    margin-top: 60px;
+  }
+}
