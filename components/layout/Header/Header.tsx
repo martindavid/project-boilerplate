@@ -1,36 +1,25 @@
 import * as React from 'react'
-import { Container, Navbar, NavDropdown } from 'react-bootstrap'
-import styles from './Header.module.scss'
+import { Header as MHeader, MediaQuery, Burger, Text } from '@mantine/core'
 
 export type HeaderProps = {
   id?: string
 }
 
 export const Header = (props: HeaderProps) => {
-
+  const [opened, setOpened] = React.useState(false)
   return (
     <>
-      <Navbar
-        bg="light"
-        expand="lg"
-        fixed="top"
-        className={styles.navbarArea}>
-        <Container>
-          <Navbar.Brand href="/">
-            <img className={styles.logo} src="/images/vercel.svg" alt="Logo" />
-          </Navbar.Brand>
-          <Navbar.Toggle />
-          <Navbar.Collapse className="justify-content-end">
-              <NavDropdown
-                title="User"
-                id="navbarScrollingDropdown">
-                <NavDropdown.Item role="button">
-                  Disconnect
-                </NavDropdown.Item>
-              </NavDropdown>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
+      <MHeader height={70} padding="md">
+        {/* You can handle other responsive styles with MediaQuery component or createStyles function */}
+        <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+          <MediaQuery smallerThan="sm" styles={{ display: 'none' }}>
+            <Burger opened={opened} onClick={() => setOpened(o => !o)} size="sm" mr="xl" />
+          </MediaQuery>
+
+          <img src="/images/vercel.svg" alt="Logo" />
+          <Text>Application header</Text>
+        </div>
+      </MHeader>
     </>
   )
 }
