@@ -1,7 +1,7 @@
 import type { AppProps } from 'next/app'
 import { MantineProvider, NormalizeCSS, GlobalStyles } from '@mantine/core'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <MantineProvider
@@ -16,4 +16,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   )
 }
-export default MyApp
+export default CustomApp
