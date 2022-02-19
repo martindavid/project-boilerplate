@@ -2,12 +2,12 @@ import { Layout } from '@components/Layout'
 import type { NextPage } from 'next'
 import * as React from 'react'
 
-const Home: NextPage = () => {
+const AccountSettingPage: NextPage = () => {
   return (
     <Layout>
-      <h3>Home</h3>
+      <h3>Account Setting</h3>
     </Layout>
   )
 }
 
-export default Home
+export default AccountSettingPage

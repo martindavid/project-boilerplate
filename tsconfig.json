@@ -24,7 +24,8 @@
       ],
       "@services/*": [
         "services/*"
-      ]
+      ],
+      "@utils/*": ["utils/*"]
     },
     "incremental": true
   },

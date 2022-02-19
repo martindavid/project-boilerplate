@@ -1,14 +1,13 @@
-import * as React from 'react'
+import { Header, Sidebar } from '@components/Layout'
 import Head from 'next/head'
-import { AppShell, Burger, Header, MediaQuery, Navbar, Text, useMantineTheme } from '@mantine/core'
+import * as React from 'react'
 
 type Props = {
   children: React.ReactNode
 }
 
 export const Layout = ({ children }: Props) => {
-  const [opened, setOpened] = React.useState(false)
-  const theme = useMantineTheme()
+  const [sidebarOpen, setSidebarOpen] = React.useState(true)
 
   return (
     <>
@@ -16,35 +15,20 @@ export const Layout = ({ children }: Props) => {
         <title>Project Boilerplate</title>
         <meta name="description" content="Project Boilerplate" />
       </Head>
-      <AppShell
-        navbarOffsetBreakpoint="sm"
-        fixed
-        navbar={
-          <Navbar padding="md" hiddenBreakpoint="sm" hidden={!opened} width={{ sm: 300, lg: 400 }}>
-            <Navbar.Section>First section</Navbar.Section>
-            <Navbar.Section>Grow section</Navbar.Section>
-            <Navbar.Section>Last section</Navbar.Section>
-          </Navbar>
-        }
-        header={
-          <Header height={70} padding="md">
-            <div style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-              <MediaQuery largerThan="sm" styles={{ display: 'none' }}>
-                <Burger
-                  opened={opened}
-                  onClick={() => setOpened(o => !o)}
-                  size="sm"
-                  color={theme.colors.gray[6]}
-                  mr="xl"
-                />
-              </MediaQuery>
+      <div className="flex h-screen overflow-hidden">
+        {/* Sidebar */}
+        <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
-              <Text>Project Boilerplate</Text>
-            </div>
-          </Header>
-        }>
-        {children}
-      </AppShell>
+        {/* Content area */}
+        <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+          {/*  Site header */}
+          <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
+
+          <main>
+            <div className="px-4 sm:px-6 lg:px-8 py-8 w-full max-w-9xl mx-auto">{children}</div>
+          </main>
+        </div>
+      </div>
     </>
   )
 }
